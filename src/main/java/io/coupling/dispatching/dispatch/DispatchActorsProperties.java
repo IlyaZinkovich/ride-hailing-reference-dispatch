@@ -1,7 +1,6 @@
 package io.coupling.dispatching.dispatch;
 
 import akka.actor.Props;
-import io.coupling.dispatching.location.Location;
 import io.coupling.dispatching.filter.Filter;
 import io.coupling.dispatching.notify.Notifications;
 import io.coupling.dispatching.sort.Sorter;
@@ -14,12 +13,12 @@ public class DispatchActorsProperties {
   private final Map<Long, Set<Long>> userBlockedDrivers;
   private final Map<Long, Set<Long>> driverBlockedUsers;
   private final Map<Long, Booking> bookings;
-  private final Map<Location, Set<Long>> driversInLocation;
+  private final Map<String, Set<Long>> driversInLocation;
 
-  DispatchActorsProperties(final Map<Long, Set<Long>> driverBlockedUsers,
+  public DispatchActorsProperties(final Map<Long, Set<Long>> driverBlockedUsers,
       final Map<Long, Booking> bookings,
       final Map<Long, Set<Long>> userBlockedDrivers,
-      final Map<Location, Set<Long>> driversInLocation) {
+      final Map<String, Set<Long>> driversInLocation) {
     this.bookings = bookings;
     this.userBlockedDrivers = userBlockedDrivers;
     this.driverBlockedUsers = driverBlockedUsers;

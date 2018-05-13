@@ -9,9 +9,9 @@ import java.util.Set;
 
 public class Supplier extends AbstractActor {
 
-  private final Map<Location, Set<Long>> driversInLocation;
+  private final Map<String, Set<Long>> driversInLocation;
 
-  private Supplier(final Map<Location, Set<Long>> driversInLocation) {
+  private Supplier(final Map<String, Set<Long>> driversInLocation) {
     this.driversInLocation = driversInLocation;
   }
 
@@ -21,13 +21,13 @@ public class Supplier extends AbstractActor {
         .match(Supply.class, supply -> {
           final long bookingId = supply.bookingId;
           final Location location = supply.location;
-          final Set<Long> driverIds = driversInLocation.get(location);
+          final Set<Long> driverIds = driversInLocation.get(location.toGeoHash());
           getSender().tell(new SuppliedDrivers(bookingId, driverIds), getSelf());
         })
         .build();
   }
 
-  public static Props props(final Map<Location, Set<Long>> driversInLocation) {
+  public static Props props(final Map<String, Set<Long>> driversInLocation) {
     return Props.create(Supplier.class, () -> new Supplier(driversInLocation));
   }
 }

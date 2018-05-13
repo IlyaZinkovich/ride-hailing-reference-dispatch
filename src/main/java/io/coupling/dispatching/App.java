@@ -25,8 +25,8 @@ public class App {
     final double lat = 53.4D;
     final double lng = 72.3D;
     final Location location = new Location(lat, lng);
-    final Map<Location, Set<Long>> driversInLocation = new HashMap<>();
-    driversInLocation.put(location, Stream.of(1L, 2L, 3L).collect(toSet()));
+    final Map<String, Set<Long>> driversInLocation = new HashMap<>();
+    driversInLocation.put(location.toGeoHash(), Stream.of(1L, 2L, 3L).collect(toSet()));
     final DispatchActorsProperties dispatchActorsProperties =
         new DispatchActorsProperties(driverBlockedUsers, bookings, userBlockedDrivers,
             driversInLocation);
