@@ -2,16 +2,18 @@ package io.coupling.dispatching.dispatch;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.japi.pf.ReceiveBuilder;
-import io.coupling.dispatching.location.Location;
 import io.coupling.dispatching.filter.FilterDrivers;
 import io.coupling.dispatching.filter.FilteredDrivers;
+import io.coupling.dispatching.location.Location;
 import io.coupling.dispatching.notify.MakeOffer;
 import io.coupling.dispatching.sort.SortDrivers;
 import io.coupling.dispatching.sort.SortedDrivers;
 import io.coupling.dispatching.supply.SuppliedDrivers;
 import io.coupling.dispatching.supply.Supply;
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -22,6 +24,7 @@ public class Dispatcher extends AbstractActor {
   private static final String FILTER = "filter";
   private static final String SORTER = "sorter";
   private static final String NOTIFICATIONS = "notifications";
+  private static final int FIXED_DELAY_BETWEEN_PUSH = 1000;
 
   private final DispatchActorsProperties dispatchActorsProperties;
   private final Map<Long, Booking> bookings;
@@ -69,6 +72,10 @@ public class Dispatcher extends AbstractActor {
                 .orElseGet(this::createNotifications);
             notifications.tell(new MakeOffer(bookingId, driverId), getSelf());
             sortedDriverIds.remove(driverId);
+            final ActorSystem system = getContext().getSystem();
+            system.scheduler()
+                .scheduleOnce(Duration.ofMillis(FIXED_DELAY_BETWEEN_PUSH), getSelf(),
+                    new SortedDrivers(bookingId, sortedDriverIds), system.dispatcher(), getSelf());
           });
         })
         .build();
