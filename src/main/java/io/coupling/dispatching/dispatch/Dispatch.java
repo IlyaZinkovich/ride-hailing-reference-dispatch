@@ -1,4 +1,6 @@
-package io.coupling.dispatch;
+package io.coupling.dispatching.dispatch;
+
+import io.coupling.dispatching.location.Location;
 
 public class Dispatch {
 

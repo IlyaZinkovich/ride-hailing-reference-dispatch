@@ -1,8 +1,9 @@
-package io.coupling.dispatch;
+package io.coupling.dispatching.supply;
 
 import akka.actor.AbstractActor;
 import akka.actor.Props;
 import akka.japi.pf.ReceiveBuilder;
+import io.coupling.dispatching.location.Location;
 import java.util.Map;
 import java.util.Set;
 

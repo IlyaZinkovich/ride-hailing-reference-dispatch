@@ -1,4 +1,4 @@
-package io.coupling.dispatch;
+package io.coupling.dispatching.notify;
 
 import akka.actor.AbstractLoggingActor;
 import akka.actor.Props;

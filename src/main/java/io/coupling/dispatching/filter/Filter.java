@@ -1,4 +1,4 @@
-package io.coupling.dispatch;
+package io.coupling.dispatching.filter;
 
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;

@@ -1,4 +1,4 @@
-package io.coupling.dispatch;
+package io.coupling.dispatching.sort;
 
 import akka.actor.AbstractActor;
 import akka.actor.Props;

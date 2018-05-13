@@ -1,4 +1,4 @@
-package io.coupling.dispatch;
+package io.coupling.dispatching.dispatch;
 
 public class Booking {
 

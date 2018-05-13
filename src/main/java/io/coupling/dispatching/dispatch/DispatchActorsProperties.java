@@ -1,6 +1,11 @@
-package io.coupling.dispatch;
+package io.coupling.dispatching.dispatch;
 
 import akka.actor.Props;
+import io.coupling.dispatching.location.Location;
+import io.coupling.dispatching.filter.Filter;
+import io.coupling.dispatching.notify.Notifications;
+import io.coupling.dispatching.sort.Sorter;
+import io.coupling.dispatching.supply.Supplier;
 import java.util.Map;
 import java.util.Set;
 

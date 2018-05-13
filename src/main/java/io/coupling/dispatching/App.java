@@ -1,4 +1,4 @@
-package io.coupling.dispatch;
+package io.coupling.dispatching;
 
 import static akka.actor.ActorRef.noSender;
 import static java.util.stream.Collectors.toSet;
@@ -6,6 +6,10 @@ import static java.util.stream.IntStream.range;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import io.coupling.dispatching.dispatch.Booking;
+import io.coupling.dispatching.dispatch.Dispatch;
+import io.coupling.dispatching.dispatch.DispatchActorsProperties;
+import io.coupling.dispatching.location.Location;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

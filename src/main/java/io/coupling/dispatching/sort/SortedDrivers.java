@@ -1,11 +1,11 @@
-package io.coupling.dispatch;
+package io.coupling.dispatching.sort;
 
 import java.util.List;
 
 public class SortedDrivers {
 
-  final long bookingId;
-  final List<Long> sortedDriverIds;
+  public final long bookingId;
+  public final List<Long> sortedDriverIds;
 
   SortedDrivers(final long bookingId, final List<Long> sortedDriverIds) {
     this.bookingId = bookingId;
